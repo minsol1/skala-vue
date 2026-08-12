@@ -30,6 +30,8 @@ import MultiSource from './components/practices/basic/MultiSource.vue';
 import DeepWatch from './components/practices/basic/DeepWatch.vue';
 import ReactiveWatch from './components/practices/basic/ReactiveWatch.vue';
 import WatchEffect from './components/practices/basic/WatchEffect.vue';
+import LifecycleHook from './components/practices/component/LifecycleHook.vue';
+import ParentComponent from './components/practices/component/ParentComponent.vue';
 
 </script>
 
@@ -70,6 +72,11 @@ import WatchEffect from './components/practices/basic/WatchEffect.vue';
     <ReactiveExample/>
     <ReactiveWatch/>
     <WatchEffect/>
+
+    <LifecycleHook/>
+
+    <ParentComponent/>
+
 
 
   </div>
