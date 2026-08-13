@@ -2,7 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import axios from 'axios'
 
-const TOUR_API_KEY = '6a953028-7753-4602-9216-b32db2fc5d10'
+const TOUR_API_KEY = import.meta.env.VITE_TOUR_API_KEY
 // 한국문화정보원_전국 시티투어 코스와 함께하는 맛집 정보 API
 const RESTAURANT_API_URL = 'https://api.kcisa.kr/openapi/API_CNV_063/request'
 const PAGE_SIZE = 5

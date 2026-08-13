@@ -9,7 +9,7 @@ const route = useRoute()
 const router = useRouter()
 const configStore = useConfigStore()
 
-const API_KEY = 'a4a7544409ce3ab9eed3f86e912a2c64'
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
 const cityData = ref(null)
 const isLoading = ref(true)

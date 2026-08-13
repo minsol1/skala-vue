@@ -10,7 +10,7 @@ import { useConfigStore } from '../stores/configStore'
 const router = useRouter()
 const configStore = useConfigStore()
 
-const API_KEY = 'a4a7544409ce3ab9eed3f86e912a2c64'
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
 const createURL = (cityName) =>
   `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&appid=${API_KEY}&units=metric`
