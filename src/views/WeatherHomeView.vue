@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 import BaseDashboardCard from '../components/exercise/BaseDashboardCard.vue'
 import SearchBar from '../components/exercise/SearchBar.vue'
 import WeatherCard from '../components/exercise/WeatherCard.vue'
@@ -9,18 +10,16 @@ import { useConfigStore } from '../stores/configStore'
 const router = useRouter()
 const configStore = useConfigStore()
 
-const weatherList = ref([
-  { id: 'city_01', name: '서울', temp: 28, status: '맑음' },
-  { id: 'city_02', name: '수원', temp: 24, status: '비' },
-  { id: 'city_03', name: '부산', temp: 26, status: '구름' },
-])
+const API_KEY = 'a4a7544409ce3ab9eed3f86e912a2c64'
+
+const createURL = (cityName) =>
+  `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&appid=${API_KEY}&units=metric`
+const weatherList = ref([])
 
 const searchCity = ref('')
 const statusMessage = ref('카드를 클릭하거나 검색해 보세요.')
 
-const filteredWeatherList = computed(() =>
-  weatherList.value.filter((weather) => weather.name.includes(searchCity.value))
-)
+const filteredWeatherList = computed(() => weatherList.value)
 
 const displayWeatherList = computed(() => {
   return filteredWeatherList.value.map((weather) => {
@@ -33,15 +32,41 @@ const displayWeatherList = computed(() => {
     }
   })
 })
-
 function selectCity(weather) {
   statusMessage.value = `${weather.name}이 선택되었습니다.`
 
 }
 
 function showDetail(weather) {
-  router.push(`/weather/${weather.id}`)
+  router.push(`/weather/${encodeURIComponent(weather.name)}`)
 }
+
+async function fetchWeatherByCity(cityName) {
+  if (!cityName.trim()) {
+    weatherList.value = []
+    return
+  }
+
+  try {
+    const response = await axios.get(createURL(cityName))
+    const currentWeather = response.data
+
+    weatherList.value = [
+      {
+        id: currentWeather.id,
+        name: currentWeather.name,
+        temp: currentWeather.main?.temp ?? 0,
+        status: currentWeather.weather?.[0]?.description ?? '맑음',
+      },
+    ]
+  } catch {
+    weatherList.value = []
+  }
+}
+
+watch(searchCity, (value) => {
+  fetchWeatherByCity(value)
+})
 
 watch(statusMessage, (newValue) => {
   console.log(`🤖 [watch 감지] 상태 바 문구가 업데이트되었습니다 ->"${newValue}"`)

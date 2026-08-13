@@ -19,7 +19,7 @@ const emit = defineEmits(['select-card', 'detail'])
         @click="emit('select-card', weather)">
         <div class="weather-info">
           <p class="city-name">{{ weather.name }} ({{ weather.status }})</p>
-          <p class="temp">한낮 기온: {{ weather.displayTemp ?? weather.temp }}°C</p>
+          <p class="temp">한낮 기온: {{ weather.temp }}°C</p>
           <span v-if="weather.temp >= 25" class="status-badge hot">🔥 더움 (25도 이상)</span>
           <span v-else class="status-badge cool">❄️ 선선함 (25도 미만)</span>
         </div>
@@ -104,4 +104,3 @@ const emit = defineEmits(['select-card', 'detail'])
   color: #2563eb;
 }
 </style>
-
