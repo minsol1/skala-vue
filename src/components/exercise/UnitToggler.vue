@@ -5,9 +5,7 @@ const configStore = useConfigStore()
 </script>
 
 <template>
-  <button type="button" class="unit-toggle-btn" @click="configStore.toggleUnit()">
-    단위변경
-  </button>
+  <button type="button" class="unit-toggle-btn" @click="configStore.toggleUnit()">단위변경</button>
 </template>
 
 <style scoped>

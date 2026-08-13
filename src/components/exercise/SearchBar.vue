@@ -7,14 +7,19 @@ defineProps({
 })
 
 const emit = defineEmits(['update-query'])
-
 </script>
 <template>
   <div class="search-bar">
     <h3>🔍 도시 검색</h3>
-    <input type="text" placeholder="검색할 도시 이름 입력" :value="searchCity"
-      @input="emit('update-query', $event.target.value)" />
-    <p>검색 중인 도시: <span>{{ searchCity }}</span></p>
+    <input
+      type="text"
+      placeholder="검색할 도시 이름 입력"
+      :value="searchCity"
+      @input="emit('update-query', $event.target.value)"
+    />
+    <p>
+      검색 중인 도시: <span>{{ searchCity }}</span>
+    </p>
   </div>
 </template>
 

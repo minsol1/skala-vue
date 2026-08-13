@@ -4,7 +4,6 @@ import BaseDashboardCard from './BaseDashboardCard.vue'
 import SearchBar from './SearchBar.vue'
 import WeatherCard from './WeatherCard.vue'
 
-
 const weatherList = ref([
   { id: 'city_01', name: '서울', temp: 28, status: '맑음' },
   { id: 'city_02', name: '수원', temp: 24, status: '비' },
@@ -15,7 +14,7 @@ const searchCity = ref('')
 const statusMessage = ref('카드를 클릭하거나 검색해 보세요.')
 
 const filteredWeatherList = computed(() =>
-  weatherList.value.filter((weather) => weather.name.includes(searchCity.value))
+  weatherList.value.filter((weather) => weather.name.includes(searchCity.value)),
 )
 
 function selectCity(weather) {
@@ -31,12 +30,12 @@ watch(statusMessage, (newValue) => {
 })
 
 watchEffect(() => {
-  console.log(`🤖 [watchEffect 자동 호출] 현재 검색어 '${searchCity.value}'에 매칭되는 API 데이터를 필터링합니다. `)
+  console.log(
+    `🤖 [watchEffect 자동 호출] 현재 검색어 '${searchCity.value}'에 매칭되는 API 데이터를 필터링합니다. `,
+  )
 })
-
 </script>
 <template>
-
   <div class="weather-parent">
     <BaseDashboardCard>
       <SearchBar :search-city="searchCity" @update-query="searchCity = $event" />
@@ -44,13 +43,16 @@ watchEffect(() => {
 
     <BaseDashboardCard>
       <h3>📋 지역별 날씨 현황</h3>
-      <WeatherCard :filtered-weather-list="filteredWeatherList" @select-card="selectCity" @detail="showDetail" />
-      <p v-if="filteredWeatherList.length === 0">😭 검색 결과와 일치하는 도시가 없습니다. </p>
+      <WeatherCard
+        :filtered-weather-list="filteredWeatherList"
+        @select-card="selectCity"
+        @detail="showDetail"
+      />
+      <p v-if="filteredWeatherList.length === 0">😭 검색 결과와 일치하는 도시가 없습니다.</p>
     </BaseDashboardCard>
 
     <p class="status-bar">{{ statusMessage }}</p>
   </div>
-
 </template>
 
 <style scoped>

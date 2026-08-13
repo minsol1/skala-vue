@@ -7,16 +7,17 @@ defineProps({
 })
 
 const emit = defineEmits(['select-card', 'detail'])
-
 </script>
 
 <template>
-
   <section class="weather-list">
-
     <ul>
-      <li v-for="weather in filteredWeatherList" :key="weather.id" class="weather-card"
-        @click="emit('select-card', weather)">
+      <li
+        v-for="weather in filteredWeatherList"
+        :key="weather.id"
+        class="weather-card"
+        @click="emit('select-card', weather)"
+      >
         <div class="weather-info">
           <p class="city-name">{{ weather.name }} ({{ weather.status }})</p>
           <p class="temp">한낮 기온: {{ weather.temp }}°C</p>
@@ -26,9 +27,7 @@ const emit = defineEmits(['select-card', 'detail'])
         <button type="button" @click.stop="emit('detail', weather)">상세보기</button>
       </li>
     </ul>
-
   </section>
-
 </template>
 
 <style scoped>
@@ -67,7 +66,7 @@ const emit = defineEmits(['select-card', 'detail'])
   cursor: pointer;
 }
 
-.weather-list>p {
+.weather-list > p {
   margin: 12px 0 0;
   text-align: center;
   color: #9ca3af;

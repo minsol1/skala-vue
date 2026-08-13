@@ -4,7 +4,7 @@
 
 <template>
   <div class="app-container">
-    <h1>⛅ 과제 : 날씨 </h1>
+    <h1>⛅ 과제 : 날씨</h1>
     <hr />
     <!-- <WeatherParent /> -->
     <div class="dashboard-wrapper">

@@ -4,7 +4,10 @@
     <hr />
 
     <div class="description-box">
-      <p>본 앱은 <strong>Vue 3</strong> 및 <strong>Vue Router 4</strong> 기반 제작된 실습용 기상 관측 대시보드 시스템입니다.</p>
+      <p>
+        본 앱은 <strong>Vue 3</strong> 및 <strong>Vue Router 4</strong> 기반 제작된 실습용 기상 관측
+        대시보드 시스템입니다.
+      </p>
       <ul>
         <li><code>components/exercise/</code> 폴더 내부의 독립 부품 연동</li>
         <li>클라이언트 사이드 라우팅을 통한 새로고침 없는 화면 전환</li>
@@ -85,10 +88,7 @@
   line-height: 1.8;
 }
 
-.description-box li+li {
+.description-box li + li {
   margin-top: 6px;
 }
-
-
-
 </style>

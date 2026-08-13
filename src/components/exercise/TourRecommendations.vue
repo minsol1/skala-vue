@@ -23,7 +23,7 @@ const currentPage = ref(1)
 const totalCount = ref(0)
 
 const totalPages = computed(() =>
-  Math.min(MAX_PAGES, Math.max(1, Math.ceil(totalCount.value / PAGE_SIZE)))
+  Math.min(MAX_PAGES, Math.max(1, Math.ceil(totalCount.value / PAGE_SIZE))),
 )
 
 // OpenWeatherMap은 lang=kr이어도 도시명(name)은 영문으로 내려주므로 맛집 API 조회용 한글 지역명으로 변환
@@ -132,7 +132,7 @@ watch(
     currentPage.value = 1
     loadRestaurants()
   },
-  { immediate: true }
+  { immediate: true },
 )
 </script>
 
@@ -162,9 +162,17 @@ watch(
     <p v-else class="tour-empty">추천 맛집 정보가 없습니다.</p>
 
     <div v-if="restaurants.length" class="tour-pagination">
-      <button type="button" :disabled="currentPage <= 1" @click="goToPage(currentPage - 1)">이전</button>
+      <button type="button" :disabled="currentPage <= 1" @click="goToPage(currentPage - 1)">
+        이전
+      </button>
       <span class="tour-pagination-info">{{ currentPage }} / {{ totalPages }}</span>
-      <button type="button" :disabled="currentPage >= totalPages" @click="goToPage(currentPage + 1)">다음</button>
+      <button
+        type="button"
+        :disabled="currentPage >= totalPages"
+        @click="goToPage(currentPage + 1)"
+      >
+        다음
+      </button>
     </div>
   </section>
 </template>
@@ -218,7 +226,7 @@ watch(
   color: #6b7280;
 }
 
-.tour-card-desc+.tour-card-desc {
+.tour-card-desc + .tour-card-desc {
   margin-top: 4px;
 }
 

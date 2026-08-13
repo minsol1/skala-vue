@@ -11,7 +11,7 @@ const searchCity = ref('')
 const statusMessage = ref('카드를 클릭하거나 검색해 보세요.')
 
 const filteredWeatherList = computed(() =>
-  weatherList.value.filter((weather) => weather.name.includes(searchCity.value))
+  weatherList.value.filter((weather) => weather.name.includes(searchCity.value)),
 )
 
 function selectCity(weather) {
@@ -27,22 +27,35 @@ watch(statusMessage, (newValue) => {
 })
 
 watchEffect(() => {
-  console.log(`🤖 [watchEffect 자동 호출] 현재 검색어 '${searchCity.value}'에 매칭되는 API 데이터를 필터링합니다. `)
+  console.log(
+    `🤖 [watchEffect 자동 호출] 현재 검색어 '${searchCity.value}'에 매칭되는 API 데이터를 필터링합니다. `,
+  )
 })
 </script>
 <template>
   <div class="weather-mockup">
-
     <section class="search-box">
       <h3>🔍 도시 검색</h3>
-      <input type="text" placeholder="검색할 도시 이름 입력" :value="searchCity" @input="searchCity = $event.target.value" />
-      <p>검색 중인 도시: <span>{{ searchCity }}</span></p>
+      <input
+        type="text"
+        placeholder="검색할 도시 이름 입력"
+        :value="searchCity"
+        @input="searchCity = $event.target.value"
+      />
+      <p>
+        검색 중인 도시: <span>{{ searchCity }}</span>
+      </p>
     </section>
 
     <section class="weather-list">
       <h3>📋 지역별 날씨 현황</h3>
       <ul>
-        <li v-for="weather in filteredWeatherList" :key="weather.id" class="weather-card" @click="selectCity(weather)">
+        <li
+          v-for="weather in filteredWeatherList"
+          :key="weather.id"
+          class="weather-card"
+          @click="selectCity(weather)"
+        >
           <div class="weather-info">
             <p class="city-name">{{ weather.name }} ({{ weather.status }})</p>
             <p class="temp">한낮 기온: {{ weather.temp }}°C</p>
@@ -52,13 +65,12 @@ watchEffect(() => {
           <button type="button" @click.stop="showDetail(weather)">상세보기</button>
         </li>
       </ul>
-      <p v-if="filteredWeatherList.length === 0">😭 검색 결과와 일치하는 도시가 없습니다. </p>
+      <p v-if="filteredWeatherList.length === 0">😭 검색 결과와 일치하는 도시가 없습니다.</p>
     </section>
 
     <p class="status-bar">{{ statusMessage }}</p>
   </div>
 </template>
-
 
 <style scoped>
 .weather-mockup {
@@ -173,7 +185,7 @@ watchEffect(() => {
   cursor: pointer;
 }
 
-.weather-list>p {
+.weather-list > p {
   margin: 12px 0 0;
   text-align: center;
   color: #9ca3af;

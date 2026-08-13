@@ -22,7 +22,7 @@ onMounted(async () => {
   try {
     const cityName = decodeURIComponent(route.params.cityName)
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&appid=${API_KEY}&units=metric&lang=kr`
+      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&appid=${API_KEY}&units=metric&lang=kr`,
     )
 
     const currentWeather = response.data
@@ -93,7 +93,7 @@ onMounted(async () => {
   background: linear-gradient(90deg, rgba(59, 130, 246, 0.45), rgba(148, 163, 184, 0.15));
 }
 
-.detail-container>div {
+.detail-container > div {
   margin-bottom: 16px;
 }
 
@@ -117,7 +117,7 @@ onMounted(async () => {
   color: #0f172a;
 }
 
-.info-card p+p {
+.info-card p + p {
   margin-top: 10px;
 }
 
@@ -136,7 +136,10 @@ onMounted(async () => {
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
 }
 
 .back-btn:hover {
@@ -150,8 +153,8 @@ onMounted(async () => {
   box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
 }
 
-.detail-container>div:first-of-type p,
-.detail-container>div:last-of-type p {
+.detail-container > div:first-of-type p,
+.detail-container > div:last-of-type p {
   padding: 16px 18px;
   border-radius: 14px;
   background: #eff6ff;

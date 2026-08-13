@@ -34,7 +34,6 @@ const displayWeatherList = computed(() => {
 })
 function selectCity(weather) {
   statusMessage.value = `${weather.name}이 선택되었습니다.`
-
 }
 
 function showDetail(weather) {
@@ -73,12 +72,12 @@ watch(statusMessage, (newValue) => {
 })
 
 watchEffect(() => {
-  console.log(`🤖 [watchEffect 자동 호출] 현재 검색어 '${searchCity.value}'에 매칭되는 API 데이터를 필터링합니다. `)
+  console.log(
+    `🤖 [watchEffect 자동 호출] 현재 검색어 '${searchCity.value}'에 매칭되는 API 데이터를 필터링합니다. `,
+  )
 })
-
 </script>
 <template>
-
   <div class="weather-parent">
     <BaseDashboardCard>
       <SearchBar :search-city="searchCity" @update-query="searchCity = $event" />
@@ -86,13 +85,16 @@ watchEffect(() => {
 
     <BaseDashboardCard>
       <h3>📋 지역별 날씨 현황</h3>
-      <WeatherCard :filtered-weather-list="displayWeatherList" @select-card="selectCity" @detail="showDetail" />
-      <p v-if="filteredWeatherList.length === 0">😭 검색 결과와 일치하는 도시가 없습니다. </p>
+      <WeatherCard
+        :filtered-weather-list="displayWeatherList"
+        @select-card="selectCity"
+        @detail="showDetail"
+      />
+      <p v-if="filteredWeatherList.length === 0">😭 검색 결과와 일치하는 도시가 없습니다.</p>
     </BaseDashboardCard>
 
     <p class="status-bar">{{ statusMessage }}</p>
   </div>
-
 </template>
 
 <style scoped>
