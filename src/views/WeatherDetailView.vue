@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useRoute, useRouter } from 'vue-router'
 import { useConfigStore } from '../stores/configStore'
+import TourRecommendations from '../components/exercise/TourRecommendations.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -58,6 +59,8 @@ onMounted(async () => {
       <p>기상 현황: {{ cityData.status }}</p>
       <p>대기 습도: {{ cityData.humidity }}</p>
       <p>현재 풍속: {{ cityData.wind }}</p>
+
+      <TourRecommendations :city-name="cityData.name" />
     </div>
     <div v-else>
       <p>{{ errorMessage || '해당 지역의 상세 데이터 장부가 존재하지 않습니다.' }}</p>
